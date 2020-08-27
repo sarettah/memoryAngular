@@ -88,6 +88,9 @@ export class Partita {
             }
         }
     }
+    addMossa(mossa:Mossa){
+       this.mosse.push(mossa);
+    }
    /* findGiocatoreById(id:string):Giocatore{
         var i;
         for(i=0; i<this.giocatori.length;i++){

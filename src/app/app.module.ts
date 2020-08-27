@@ -52,7 +52,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    GiocaComponent
   ],
   imports: [
     BrowserModule,

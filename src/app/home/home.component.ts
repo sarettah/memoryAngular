@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     }else*/
     if((this.name === null || this.name === "") || (this.id === null || this.id === "") ){
       console.log("id o nome nulli");
-      this.alert.error("inserire il codice");
+      this.alert.error("inserire il codice e/o il nome");
     }else{
       console.log("id e nome non nulli - "+this.name+" - "+this.id);
       this.router.navigate(['/gioca', this.id,this.name]);

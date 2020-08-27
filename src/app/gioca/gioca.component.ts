@@ -7,6 +7,8 @@ import * as firebase from 'firebase/app';
 import { Partita } from '../partita';
 import { Giocatore } from '../giocatore';
 import { Mossa } from '../mossa';
+import { Button } from 'protractor';
+import { map } from 'rxjs/operators';
 
 export interface Tile {
   cols: number;
@@ -28,7 +30,15 @@ export class GiocaComponent implements OnInit {
   nomi:Array<String>=[];
   giocatori:Array<Giocatore>=[];
   //mossee:Array<String>=["1A","1B", "1C","1D","2A","2B", "2C","2D"];
-  mosse:Array<Mossa>=[new Mossa("1","A","2"), new Mossa("1","B","2"),new Mossa("1","C","3"), new Mossa("1","D","3")  ]
+  mosse:Array<Mossa>=[new Mossa("1","A","2"), new Mossa("1","B","2"),new Mossa("1","C","3"),new Mossa("1","D","3"),
+                      new Mossa("2","A","7"), new Mossa("2","B","7"),new Mossa("2","C","9"),new Mossa("2","D","9"),
+                      new Mossa("3","A","1"), new Mossa("3","B","1"),new Mossa("3","C","4"),new Mossa("3","D","4"),
+                      new Mossa("4","A","0"), new Mossa("4","B","0"),new Mossa("4","C","5"),new Mossa("4","D","5")
+                    ]
+  mosseTotali:Array<Mossa>=[new Mossa("1","A","2"), new Mossa("1","B","2"),new Mossa("1","C","3"),new Mossa("1","D","3"),
+                            new Mossa("2","A","7"), new Mossa("2","B","7"),new Mossa("2","C","9"),new Mossa("2","D","9"),
+                            new Mossa("3","A","1"), new Mossa("3","B","1"),new Mossa("3","C","4"),new Mossa("3","D","4"),
+                            new Mossa("4","A","0"), new Mossa("4","B","0"),new Mossa("4","C","5"),new Mossa("4","D","5")];
   turno:String;
   nMossePerTurno:number=0;
   primoValore:String="";
@@ -36,7 +46,7 @@ export class GiocaComponent implements OnInit {
   primaMossa:Mossa;
   secondaMossa:Mossa;
   punti:number=0;
-  mossePerTurnoTot:number=2;
+  //mossePerTurnoTot:number=2;
   dbGlobal:AngularFirestore;
 
   constructor(private route: ActivatedRoute, private router: Router,private db: AngularFirestore ) { 
@@ -100,15 +110,23 @@ export class GiocaComponent implements OnInit {
     y.innerText="?"
   }
 
+  //annullo tutti le variabili temporanee per il turno successivo
   this.primoValore="";
   this.primoValore="";
+  this.nMossePerTurno=0;
+  //rendo non cliccabili i tasti
+  for (i = 0; i < this.mosseTotali.length; i++) {
+    var mossa = this.mosseTotali[i];
+    var y = document.getElementById(mossa.getRiga().toString()+mossa.getColonna().toString());
+    y.setAttribute('disabled','disabled');
+  }
 
   //salvare il documento del turno
   //cambiare giocatore del turno
   //salvare i punti
   //togliere dalla lista i pulsanti uguali che sono stati scoperti
 
-  this.setFineTurnoAsync(this.dbGlobal, this.partita, this.idGiocatore, this.punti);
+  this.setFineTurnoAsync(this.dbGlobal, this.partita, this.idGiocatore, this.punti, this.mosseTotali);
 
  }
 
@@ -119,7 +137,7 @@ export class GiocaComponent implements OnInit {
 //FINITO IL TURNO SALVO TUTTO
 //prima faccio il get del documento
 //METODO SET A FINE TURNO (richiama il get di firebase)
-async setFineTurnoAsync(db: AngularFirestore, partita:Partita, idGiocatore:string, punti:number){
+async setFineTurnoAsync(db: AngularFirestore, partita:Partita, idGiocatore:string, punti:number, mosseTotali:Array<Mossa>){
 
   console.log('calling');
   const result = await this.getDataAsync(db, partita, name)
@@ -128,7 +146,7 @@ async setFineTurnoAsync(db: AngularFirestore, partita:Partita, idGiocatore:strin
     if(partitaNew != null){
       //mi salvo la partita che c'è in db per poi aggiungere dati
       var mosse = partita.getMosse();//salvo le mosse prima che vegano sovrascritte
-  
+     
       partita=partitaNew; //lavoro con la partita passata in parametro della funzione
       partita.setPuntiGiocatoreById(idGiocatore,punti);
       partita.setTurno(partita.setNextTurno(idGiocatore));
@@ -149,10 +167,30 @@ async setFineTurnoAsync(db: AngularFirestore, partita:Partita, idGiocatore:strin
   }) 
   .catch(function (err) { console.log("ERROR:"+ err); });
   
-
-
-
 }
+
+
+/*
+ //gestione pulsanti griglia
+      var i;
+       console.log("mosseTotali: ")
+      for (i = 0; i < mosseTotali.length; i++) {
+        var mossa = mosseTotali[i];
+        var y = document.getElementById(mossa.getRiga().toString()+mossa.getColonna().toString())
+        //y.innerText=mossa.getValore()+"";
+       // y.setAttribute('disabled','disabled')
+        console.log(mossa.getRiga().toString()+mossa.getColonna().toString())
+      }
+      console.log("mosse: ")
+      for (i = 0; i < mosse.length; i++) {
+        var mossa = mosse[i];
+        var y = document.getElementById(mossa.getRiga().toString()+mossa.getColonna().toString())
+        //y.innerText=mossa.getValore()+"";
+        y.setAttribute('enabled','enabled');
+        console.log(mossa.getRiga().toString()+mossa.getColonna().toString())
+      }
+      
+*/ 
  
  ////////////////////////////////////////////////////////////////////////////////////
  //METODO SET PER INIZIARE LA PARTITA (richiama il get di firebase)
@@ -223,11 +261,16 @@ async setFineTurnoAsync(db: AngularFirestore, partita:Partita, idGiocatore:strin
   }
 
 /////////////////////////////////////////////////////////////////////////////
-firebaseListener(db: AngularFirestore){
-  db.collection("cities").doc("SF")
-    .onSnapshot(function(doc) {
-        console.log("Current data: ", doc.data());
-    });
+  firebaseListener(db: AngularFirestore){
+    db.collection("partite").doc(this.id)
+      .snapshotChanges().pipe(
+        map(action => {
+          const data = action.payload.data();
+          console.log("listener "+data);
 
-}
+          //return  data ;
+          })
+        )
+  
+  }
 }

@@ -1,10 +1,12 @@
 <div class="content">
     <!-- <p>gioca works! ID: {{id}} Name: {{name}}</p> -->
-    <p>Goditi la partita {{name}}</p>
-    <p>giocatori: {{partita.nomi}}  </p>
+    <p>Goditi la partita <!--{{name}}-->
+      <br>
+    giocatori: {{partita.nomi}}  </p>
     <p>Turno del giocatore: {{partita.turno}} </p>
-
-    <table>
+    <br>
+  
+    <table class="table">
       <tr>
         <td>     </td>
         <td>  A  </td>
@@ -21,19 +23,34 @@
       </tr>
       <tr>
         <td>2</td>
+        <td><button id="2A" name="btn" mat-raised-button color="primary" (click)="btnClick('2','A','7')">?</button></td>
+        <td><button id="2B" name="btn" mat-raised-button color="primary" (click)="btnClick('2','B','7')">?</button></td>
+        <td><button id="2C" name="btn" mat-raised-button color="primary" (click)="btnClick('2','C','9')">?</button></td>
+        <td><button id="2D" name="btn" mat-raised-button color="primary" (click)="btnClick('2','D','9')">?</button></td>
       </tr>
       <tr>
         <td>3</td>
+        <td><button id="3A" name="btn" mat-raised-button color="primary" (click)="btnClick('3','A','1')">?</button></td>
+        <td><button id="3B" name="btn" mat-raised-button color="primary" (click)="btnClick('3','B','1')">?</button></td>
+        <td><button id="3C" name="btn" mat-raised-button color="primary" (click)="btnClick('3','C','4')">?</button></td>
+        <td><button id="3D" name="btn" mat-raised-button color="primary" (click)="btnClick('3','D','4')">?</button></td>
       </tr>
       <tr>
         <td>4</td>
+        <td><button id="4A" name="btn" mat-raised-button color="primary" (click)="btnClick('4','A','0')">?</button></td>
+        <td><button id="4B" name="btn" mat-raised-button color="primary" (click)="btnClick('4','B','0')">?</button></td>
+        <td><button id="4C" name="btn" mat-raised-button color="primary" (click)="btnClick('4','C','5')">?</button></td>
+        <td><button id="4D" name="btn" mat-raised-button color="primary" (click)="btnClick('4','D','5')">?</button></td>
       </tr>
      
     </table>
+  
+  <br>
 
-    <h3 id="punti">Punti: 0</h3>
     <h3 id="mosse">Mosse: 2</h3>
-    <button (click)="fineTurno()">fine turno</button>
+    <h3 id="punti">Punti: 0</h3>
+    
+    <button mat-raised-button color="primary" (click)="fineTurno()">fine turno</button>
 
 </div>
 
