@@ -1,0 +1,40 @@
+<div class="content">
+    <!-- <p>gioca works! ID: {{id}} Name: {{name}}</p> -->
+    <p>Goditi la partita {{name}}</p>
+    <p>giocatori: {{partita.nomi}}  </p>
+    <p>Turno del giocatore: {{partita.turno}} </p>
+
+    <table>
+      <tr>
+        <td>     </td>
+        <td>  A  </td>
+        <td>  B  </td>
+        <td>  C  </td>
+        <td>  D  </td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td><button id="1A" name="btn" mat-raised-button color="primary" (click)="btnClick('1','A','2')">?</button></td>
+        <td><button id="1B" name="btn" mat-raised-button color="primary" (click)="btnClick('1','B','2')">?</button></td>
+        <td><button id="1C" name="btn" mat-raised-button color="primary" (click)="btnClick('1','C','3')">?</button></td>
+        <td><button id="1D" name="btn" mat-raised-button color="primary" (click)="btnClick('1','D','3')">?</button></td>
+      </tr>
+      <tr>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>4</td>
+      </tr>
+     
+    </table>
+
+    <h3 id="punti">Punti: 0</h3>
+    <h3 id="mosse">Mosse: 2</h3>
+    <button (click)="fineTurno()">fine turno</button>
+
+</div>
+
+

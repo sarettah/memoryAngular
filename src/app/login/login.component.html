@@ -1,0 +1,31 @@
+
+<div class="content" role="main">
+
+  <h1 class="title">Memory Game</h1>
+
+  <p>Login</p>
+
+  <form class="example-form" >
+    <mat-form-field class="example-full-width">
+      <mat-label  >email</mat-label>
+      <input matInput id="email" placeholder="" value=""  [(ngModel)]="email"  [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <mat-label  >password</mat-label>
+      <input matInput id="password" [(ngModel)]="password"  [ngModelOptions]="{standalone: true}" >
+    </mat-form-field>
+
+   
+  </form>
+
+  <!--<button mat-raised-button color="primary" (click)="login()">login</button>
+  <button mat-raised-button color="primary" (click)="doGoogleLogin()">login con Google</button>
+  <button mat-raised-button color="primary" (click)="popup()">login misto</button>
+  <button routerLink="/home" routerLinkActive="active" (click)="popup()">route</button> -->
+    
+   <button mat-raised-button color="primary" (click)="login()">login</button> 
+   <button  mat-raised-button color="primary" (click)="route()">route</button> <!--mi porta alla home senza fare il login-->
+  
+</div>
+

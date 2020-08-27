@@ -1,0 +1,43 @@
+<div class="content">
+
+ 
+
+    <h1>MEMORY GAME</h1>
+    <h2>Invita i tuoi amici</h2>
+
+    <!--Project Console: https://console.firebase.google.com/project/angularmemory/overview
+        Hosting URL: https://angularmemory.web.app-->
+     <!--<p *ngIf="userId">manda questo codice per giocare: {{userId}}</p>-->
+
+    <p></p>
+
+    <p>  
+
+    <!-- /WhatsApp Share Button By niralar.com -->
+    <a rel="nofollow noopener noreferrer" data-shared="" class="share-jetpack-whatsapp sd-button share-icon"
+     href="https://api.whatsapp.com/send?text=https://angularmemory.web.app" target="_blank" title="Click to share on WhatsApp">
+     <span>Share on WhatsApp</span></a>  
+    <!--<a rel="nofollow noopener noreferrer" data-shared="" class="share-jetpack-whatsapp sd-button share-icon" href="https://niralar.com/whatsapp-share-button-website/?share=jetpack-whatsapp&amp;nb=1" target="_blank" title="Click to share on WhatsApp"><span>WhatsApp</span></a>
+    <br>
+    <a href="whatsapp://send?text=https://angularmemory.web.app" data-action="share/whatsapp/share">Share via Whatsapp mio</a>
+    <a href="whatsapp://send?text=https://niralar.com" data-action="share/whatsapp/share">Share via Whatsapp</a>
+    <br>
+    <a href="http://whatsapp://send?text=http://webdevelopmentscripts.com">Share on whatsapp</a>-->
+    </p>
+
+    <form class="example-form" >
+        <mat-form-field class="example-full-width">
+          <mat-label  >Scrivi il tuo nickname</mat-label>
+          <input matInput id="name" placeholder="" value=""  [(ngModel)]="name"  [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label  >Scrivi il codice di gioco</mat-label>
+          <input matInput id="id" placeholder="" value=""  [(ngModel)]="id"  [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+      </form>
+    
+    <button mat-raised-button color="primary" (click)="gioca()">Inizia a giocare!</button>
+
+</div>
+
+
