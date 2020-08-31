@@ -8,14 +8,16 @@ export class Partita {
     id: string;
     nomi: Array<String>;
     mosse: Array<Mossa>;
+    mosseFatte: Array<Mossa>;
     turno: String;
     vincitore: String;
     giocatori: Array<Giocatore>;
 
-    constructor(id:string,nomi:Array<String>,mosse:Array<Mossa>,turno: String,vincitore: String,giocatori: Array<Giocatore>){
+    constructor(id:string,nomi:Array<String>,mosse:Array<Mossa>,mosseFatte:Array<Mossa>,turno: String,vincitore: String,giocatori: Array<Giocatore>){
         this.id=id;
         this.nomi=nomi;
         this.mosse=mosse;
+        this.mosseFatte=mosseFatte;
         this.turno=turno;
         this.vincitore=vincitore;
         this.giocatori=giocatori;
@@ -29,6 +31,7 @@ export class Partita {
             id: partita.getId(),
             nomi: partita.getNomi(),
             mosse:Mossa.convertToJson(partita.getMosse()),
+            mosseFatte:Mossa.convertToJson(partita.getMosseFatte()),
             turno: partita.getTurno(),
             vincitore: partita.getVincitore(),
             giocatori: Giocatore.convertToJson(partita.getGiocatori())
@@ -42,15 +45,18 @@ export class Partita {
         let id = obj.id 
         let nomi = obj.nomi; 
         let mosse =  Mossa.convertToMossa(obj.mosse);
+        let mosseFatte;
+        if(obj.mosseFatte !=null)
+            mosseFatte =  Mossa.convertToMossa(obj.mosseFatte);
         let turno =  obj.turno 
         let vincitore =  obj.vincitore
         //console.log("get giocatori: "+obj.giocatori)
         let giocatori = Giocatore.convertToGiocatore(obj.giocatori)
         //console.log("get giocatori: "+giocatori.length)
-        return new Partita(id,nomi, mosse, turno, vincitore,giocatori);
+        return new Partita(id,nomi, mosse,mosseFatte, turno, vincitore,giocatori);
     }
 
-    setNextTurno(idGiocatoreAttuale:string):String{
+    getNextTurno(idGiocatoreAttuale:string):String{
         var i;
         for(i=0; i<this.giocatori.length;i++){
             //console.log("i "+i)
@@ -82,14 +88,14 @@ export class Partita {
             return
         for(i=0; i<this.mosse.length;i++){
             if(this.mosse[i].getRiga() === mossa.getRiga() && this.mosse[i].getColonna() === mossa.getColonna()){
-                console.log("eliminata mossa "+this.mosse[i].getRiga()+this.mosse[i].getColonna() )
+                //console.log("eliminata mossa "+this.mosse[i].getRiga()+this.mosse[i].getColonna() )
                 this.mosse.splice(i,1);
                 
             }
         }
     }
-    addMossa(mossa:Mossa){
-       this.mosse.push(mossa);
+    addMossaFatta(mossa:Mossa){
+       this.mosseFatte.push(mossa);
     }
    /* findGiocatoreById(id:string):Giocatore{
         var i;
@@ -109,6 +115,9 @@ export class Partita {
     getMosse(): Array<Mossa>{
         return this.mosse;
     }
+    getMosseFatte(): Array<Mossa>{
+        return this.mosseFatte;
+    }
     getTurno(): String{
         return this.turno;
     }
@@ -126,6 +135,9 @@ export class Partita {
     }
     setMosse(mosse: Array<Mossa>): void{
         this.mosse=mosse;
+    }
+    setMosseFatte(mosseFatte: Array<Mossa>): void{
+        this.mosseFatte=mosseFatte;
     }
     setTurno(turno: String): void{
         this.turno=turno;
