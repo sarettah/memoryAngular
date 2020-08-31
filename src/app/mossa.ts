@@ -1,3 +1,5 @@
+import { DocumentData } from '@angular/fire/firestore';
+
 export class Mossa {
 
    riga: String;
@@ -50,6 +52,17 @@ export class Mossa {
       return arrMosse
   }
 
+  static convertToMossaAttuale(obj:DocumentData): Array<String>{
+    let id = obj.id;
+    let riga1 = obj.riga1;
+    let colonna1 = obj.colonna1;
+    let valore1 = obj.valore1;
+    let riga2 = obj.riga2;
+    let colonna2 = obj.colonna2;
+    let valore2 = obj.valore2;
+
+    return [id, riga1,colonna1,valore1, riga2,colonna2,valore2]
+}
 
 
    getRiga(): String{

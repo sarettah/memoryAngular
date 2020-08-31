@@ -6,7 +6,8 @@
     <p>Turno del giocatore: {{partita.turno}} </p>
     <br>
   
-    <table class="table">
+   
+    <table class="table" id="1" *ngIf="pattern===1">
       <tr>
         <td>     </td>
         <td>  A  </td>
@@ -15,36 +16,151 @@
         <td>  D  </td>
       </tr>
       <tr>
-        <td>1</td>
+        <td>1</td>  
         <td><button id="1A" name="btn" mat-raised-button color="primary" (click)="btnClick('1','A','2')">?</button></td>
-        <td><button id="1B" name="btn" mat-raised-button color="primary" (click)="btnClick('1','B','2')">?</button></td>
-        <td><button id="1C" name="btn" mat-raised-button color="primary" (click)="btnClick('1','C','3')">?</button></td>
+        <td><button id="1B" name="btn" mat-raised-button color="primary" (click)="btnClick('1','B','4')">?</button></td>
+        <td><button id="1C" name="btn" mat-raised-button color="primary" (click)="btnClick('1','C','9')">?</button></td>
         <td><button id="1D" name="btn" mat-raised-button color="primary" (click)="btnClick('1','D','3')">?</button></td>
       </tr>
       <tr>
-        <td>2</td>
-        <td><button id="2A" name="btn" mat-raised-button color="primary" (click)="btnClick('2','A','7')">?</button></td>
-        <td><button id="2B" name="btn" mat-raised-button color="primary" (click)="btnClick('2','B','7')">?</button></td>
-        <td><button id="2C" name="btn" mat-raised-button color="primary" (click)="btnClick('2','C','9')">?</button></td>
+        <td>2</td> 
+        <td><button id="2A" name="btn" mat-raised-button color="primary" (click)="btnClick('2','A','5')">?</button></td>
+        <td><button id="2B" name="btn" mat-raised-button color="primary" (click)="btnClick('2','B','1')">?</button></td>
+        <td><button id="2C" name="btn" mat-raised-button color="primary" (click)="btnClick('2','C','7')">?</button></td>
         <td><button id="2D" name="btn" mat-raised-button color="primary" (click)="btnClick('2','D','9')">?</button></td>
       </tr>
       <tr>
         <td>3</td>
-        <td><button id="3A" name="btn" mat-raised-button color="primary" (click)="btnClick('3','A','1')">?</button></td>
-        <td><button id="3B" name="btn" mat-raised-button color="primary" (click)="btnClick('3','B','1')">?</button></td>
-        <td><button id="3C" name="btn" mat-raised-button color="primary" (click)="btnClick('3','C','4')">?</button></td>
+        <td><button id="3A" name="btn" mat-raised-button color="primary" (click)="btnClick('3','A','0')">?</button></td>
+        <td><button id="3B" name="btn" mat-raised-button color="primary" (click)="btnClick('3','B','5')">?</button></td>
+        <td><button id="3C" name="btn" mat-raised-button color="primary" (click)="btnClick('3','C','3')">?</button></td>
         <td><button id="3D" name="btn" mat-raised-button color="primary" (click)="btnClick('3','D','4')">?</button></td>
       </tr>
       <tr>
         <td>4</td>
         <td><button id="4A" name="btn" mat-raised-button color="primary" (click)="btnClick('4','A','0')">?</button></td>
-        <td><button id="4B" name="btn" mat-raised-button color="primary" (click)="btnClick('4','B','0')">?</button></td>
-        <td><button id="4C" name="btn" mat-raised-button color="primary" (click)="btnClick('4','C','5')">?</button></td>
-        <td><button id="4D" name="btn" mat-raised-button color="primary" (click)="btnClick('4','D','5')">?</button></td>
+        <td><button id="4B" name="btn" mat-raised-button color="primary" (click)="btnClick('4','B','1')">?</button></td>
+        <td><button id="4C" name="btn" mat-raised-button color="primary" (click)="btnClick('4','C','7')">?</button></td>
+        <td><button id="4D" name="btn" mat-raised-button color="primary" (click)="btnClick('4','D','2')">?</button></td>
       </tr>
      
     </table>
-  
+
+    <table class="table" id="2" *ngIf="pattern===2">
+      <tr>
+        <td>     </td>
+        <td>  A  </td>
+        <td>  B  </td>
+        <td>  C  </td>
+        <td>  D  </td>
+      </tr>
+      <tr>
+        <td>1</td> 
+        <td><button id="1A" name="btn" mat-raised-button color="primary" (click)="btnClick('1','A','5')">?</button></td>
+        <td><button id="1B" name="btn" mat-raised-button color="primary" (click)="btnClick('1','B','0')">?</button></td>
+        <td><button id="1C" name="btn" mat-raised-button color="primary" (click)="btnClick('1','C','9')">?</button></td>
+        <td><button id="1D" name="btn" mat-raised-button color="primary" (click)="btnClick('1','D','7')">?</button></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><button id="2A" name="btn" mat-raised-button color="primary" (click)="btnClick('2','A','1')">?</button></td>
+        <td><button id="2B" name="btn" mat-raised-button color="primary" (click)="btnClick('2','B','7')">?</button></td>
+        <td><button id="2C" name="btn" mat-raised-button color="primary" (click)="btnClick('2','C','5')">?</button></td>
+        <td><button id="2D" name="btn" mat-raised-button color="primary" (click)="btnClick('2','D','3')">?</button></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><button id="3A" name="btn" mat-raised-button color="primary" (click)="btnClick('3','A','4')">?</button></td>
+        <td><button id="3B" name="btn" mat-raised-button color="primary" (click)="btnClick('3','B','4')">?</button></td>
+        <td><button id="3C" name="btn" mat-raised-button color="primary" (click)="btnClick('3','C','3')">?</button></td>
+        <td><button id="3D" name="btn" mat-raised-button color="primary" (click)="btnClick('3','D','1')">?</button></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><button id="4A" name="btn" mat-raised-button color="primary" (click)="btnClick('4','A','9')">?</button></td>
+        <td><button id="4B" name="btn" mat-raised-button color="primary" (click)="btnClick('4','B','2')">?</button></td>
+        <td><button id="4C" name="btn" mat-raised-button color="primary" (click)="btnClick('4','C','7')">?</button></td>
+        <td><button id="4D" name="btn" mat-raised-button color="primary" (click)="btnClick('4','D','2')">?</button></td>
+      </tr>
+     
+    </table>
+    <table class="table" id="3" *ngIf="pattern===3">
+      <tr>
+        <td>     </td>
+        <td>  A  </td>
+        <td>  B  </td>
+        <td>  C  </td>
+        <td>  D  </td>
+      </tr>
+      <tr>
+        <td>1</td>   
+        <td><button id="1A" name="btn" mat-raised-button color="primary" (click)="btnClick('1','A','0')">?</button></td>
+        <td><button id="1B" name="btn" mat-raised-button color="primary" (click)="btnClick('1','B','5')">?</button></td>
+        <td><button id="1C" name="btn" mat-raised-button color="primary" (click)="btnClick('1','C','1')">?</button></td>
+        <td><button id="1D" name="btn" mat-raised-button color="primary" (click)="btnClick('1','D','4')">?</button></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><button id="2A" name="btn" mat-raised-button color="primary" (click)="btnClick('2','A','3')">?</button></td>
+        <td><button id="2B" name="btn" mat-raised-button color="primary" (click)="btnClick('2','B','1')">?</button></td>
+        <td><button id="2C" name="btn" mat-raised-button color="primary" (click)="btnClick('2','C','0')">?</button></td>
+        <td><button id="2D" name="btn" mat-raised-button color="primary" (click)="btnClick('2','D','9')">?</button></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><button id="3A" name="btn" mat-raised-button color="primary" (click)="btnClick('3','A','7')">?</button></td>
+        <td><button id="3B" name="btn" mat-raised-button color="primary" (click)="btnClick('3','B','4')">?</button></td>
+        <td><button id="3C" name="btn" mat-raised-button color="primary" (click)="btnClick('3','C','3')">?</button></td>
+        <td><button id="3D" name="btn" mat-raised-button color="primary" (click)="btnClick('3','D','9')">?</button></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><button id="4A" name="btn" mat-raised-button color="primary" (click)="btnClick('4','A','2')">?</button></td>
+        <td><button id="4B" name="btn" mat-raised-button color="primary" (click)="btnClick('4','B','7')">?</button></td>
+        <td><button id="4C" name="btn" mat-raised-button color="primary" (click)="btnClick('4','C','5')">?</button></td>
+        <td><button id="4D" name="btn" mat-raised-button color="primary" (click)="btnClick('4','D','2')">?</button></td>
+      </tr>
+     
+    </table>
+
+    <table class="table" id="0" *ngIf="pattern===0">
+      <tr>
+        <td>     </td>
+        <td>  A  </td>
+        <td>  B  </td>
+        <td>  C  </td>
+        <td>  D  </td>
+      </tr>
+      <tr>
+        <td>1</td> 
+        <td><button id="1A" name="btn" mat-raised-button color="primary" (click)="btnClick('1','A','4')">?</button></td>
+        <td><button id="1B" name="btn" mat-raised-button color="primary" (click)="btnClick('1','B','3')">?</button></td>
+        <td><button id="1C" name="btn" mat-raised-button color="primary" (click)="btnClick('1','C','5')">?</button></td>
+        <td><button id="1D" name="btn" mat-raised-button color="primary" (click)="btnClick('1','D','2')">?</button></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><button id="2A" name="btn" mat-raised-button color="primary" (click)="btnClick('2','A','2')">?</button></td>
+        <td><button id="2B" name="btn" mat-raised-button color="primary" (click)="btnClick('2','B','1')">?</button></td>
+        <td><button id="2C" name="btn" mat-raised-button color="primary" (click)="btnClick('2','C','7')">?</button></td>
+        <td><button id="2D" name="btn" mat-raised-button color="primary" (click)="btnClick('2','D','0')">?</button></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><button id="3A" name="btn" mat-raised-button color="primary" (click)="btnClick('3','A','7')">?</button></td>
+        <td><button id="3B" name="btn" mat-raised-button color="primary" (click)="btnClick('3','B','9')">?</button></td>
+        <td><button id="3C" name="btn" mat-raised-button color="primary" (click)="btnClick('3','C','3')">?</button></td>
+        <td><button id="3D" name="btn" mat-raised-button color="primary" (click)="btnClick('3','D','4')">?</button></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><button id="4A" name="btn" mat-raised-button color="primary" (click)="btnClick('4','A','1')">?</button></td>
+        <td><button id="4B" name="btn" mat-raised-button color="primary" (click)="btnClick('4','B','5')">?</button></td>
+        <td><button id="4C" name="btn" mat-raised-button color="primary" (click)="btnClick('4','C','9')">?</button></td>
+        <td><button id="4D" name="btn" mat-raised-button color="primary" (click)="btnClick('4','D','0')">?</button></td>
+      </tr>
+     
+    </table>
   <br>
 
     <h3 id="mosse">Mosse: 2</h3>
@@ -59,5 +175,6 @@
 
 
 </div>
+
 
 
