@@ -31,9 +31,17 @@ export class GiocaComponent implements OnInit {
   partita: Partita;
   nomi:Array<String>=[];
   giocatori:Array<Giocatore>=[];
-  //mossee:Array<String>=["1A","1B", "1C","1D","2A","2B", "2C","2D"];
-  mosse:Array<Mossa>=[];
-  mosseTotali:Array<Mossa>=[];
+  //mosse:Array<Mossa>=[];
+  //mosseTotali:Array<Mossa>=[];
+  mosseTotali=[new Mossa("1","A","5"), new Mossa("1","B","0"),new Mossa("1","C","9"),new Mossa("1","D","7"),
+                          new Mossa("2","A","1"), new Mossa("2","B","7"),new Mossa("2","C","5"),new Mossa("2","D","3"),
+                          new Mossa("3","A","4"), new Mossa("3","B","4"),new Mossa("3","C","3"),new Mossa("3","D","1"),
+                          new Mossa("4","A","9"), new Mossa("4","B","2"),new Mossa("4","C","0"),new Mossa("4","D","2")]
+  mosse=[new Mossa("1","A","5"), new Mossa("1","B","0"),new Mossa("1","C","9"),new Mossa("1","D","7"),
+                    new Mossa("2","A","1"), new Mossa("2","B","7"),new Mossa("2","C","5"),new Mossa("2","D","3"),
+                    new Mossa("3","A","4"), new Mossa("3","B","4"),new Mossa("3","C","3"),new Mossa("3","D","1"),
+                    new Mossa("4","A","9"), new Mossa("4","B","2"),new Mossa("4","C","0"),new Mossa("4","D","2")]
+ 
   mosseFatte:Array<Mossa>=[]
   turno:String;
   nMossePerTurno:number=0;
@@ -47,13 +55,13 @@ export class GiocaComponent implements OnInit {
   //mossePerTurnoTot:number=2;
   dbGlobal:AngularFirestore;
   docSnap;
-  pattern;
+  //pattern;
 
 
   constructor(private route: ActivatedRoute, private router: Router,private db: AngularFirestore, 
     private dbb:AngularFireModule ) { 
-    this.pattern=-1;
-    this.caselle()
+    //this.pattern=-1;
+    //this.caselle()
     this.dbGlobal=db;
     this.id = this.route.snapshot.paramMap.get("id");
     this.name = this.route.snapshot.paramMap.get("name");
@@ -114,8 +122,11 @@ export class GiocaComponent implements OnInit {
       for(i=0;i<userData.length; i++){
         var mossaListener:Array<String> = Mossa.convertToMossaAttuale(userData[i]);
         if(mossaListener[0]===this.id){
+          console.log("listener: "+mossaListener.toString())
           if(mossaListener[1]=== "-2"){ //ho svuotato a fine turno e il testo torna a ?
             //mossa vuota
+            //this.primaMossaGet = new Mossa("","","")
+           
             document.getElementById(this.primaMossaGet.getRiga()+""+this.primaMossaGet.getColonna()).innerText="?"
           }else{
             //prima mossa c'è
@@ -128,6 +139,7 @@ export class GiocaComponent implements OnInit {
 
           }else if(mossaListener[4] === "-2"){ //ho svuotato a fine turno e il testo torna a ?
             //mossa vuota
+            //this.secondaMossaGet = new Mossa("","","")
             document.getElementById(this.secondaMossaGet.getRiga()+""+this.secondaMossaGet.getColonna()).innerText="?"
           }else{
             //seconda mossa c'è
@@ -152,7 +164,7 @@ export class GiocaComponent implements OnInit {
 ///////////////////////////////////////////////////////////////////////////////////
 //ONCLICK BUTTON
  btnClick(riga,colonna, valore){
-   
+   console.log("mossa scelta: "+riga+colonna+valore)
     if(this.partita.getTurno() === this.name){
      // console.log("é il tuo turno");
       if(this.nMossePerTurno === 0){
@@ -374,8 +386,9 @@ async setFineTurnoAsync(db: AngularFirestore, partita:Partita, idGiocatore:strin
   
   //salvo la partita nella this.partita per visualizzare a video le info
   this.partita=partita;
-  this.mosse = partita.getMosse()
-  this.mosseTotali = partita.getMosse()
+  //this.mosse = partita.getMosse()
+  //this.mosseTotali = partita.getMosse()
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -405,8 +418,9 @@ ngOnInit(): void {
  
 }
 
-caselle(){
+/*caselle(){
   
+ 
   this.pattern =  Math.floor(Math.random() * 4) ;
  // document.getElementById(this.pattern.toString()).style.display === "block"
  // console.log("caselle: "+this.pattern)
@@ -425,11 +439,11 @@ caselle(){
         this.mosseTotali=[new Mossa("1","A","5"), new Mossa("1","B","0"),new Mossa("1","C","9"),new Mossa("1","D","7"),
                           new Mossa("2","A","1"), new Mossa("2","B","7"),new Mossa("2","C","5"),new Mossa("2","D","3"),
                           new Mossa("3","A","4"), new Mossa("3","B","4"),new Mossa("3","C","3"),new Mossa("3","D","1"),
-                          new Mossa("4","A","9"), new Mossa("4","B","2"),new Mossa("4","C","7"),new Mossa("4","D","2")]
+                          new Mossa("4","A","9"), new Mossa("4","B","2"),new Mossa("4","C","0"),new Mossa("4","D","2")]
         this.mosse=[new Mossa("1","A","5"), new Mossa("1","B","0"),new Mossa("1","C","9"),new Mossa("1","D","7"),
                     new Mossa("2","A","1"), new Mossa("2","B","7"),new Mossa("2","C","5"),new Mossa("2","D","3"),
                     new Mossa("3","A","4"), new Mossa("3","B","4"),new Mossa("3","C","3"),new Mossa("3","D","1"),
-                    new Mossa("4","A","9"), new Mossa("4","B","2"),new Mossa("4","C","7"),new Mossa("4","D","2")]
+                    new Mossa("4","A","9"), new Mossa("4","B","2"),new Mossa("4","C","0"),new Mossa("4","D","2")]
         break;
         case 3:
           this.mosseTotali=[new Mossa("1","A","0"), new Mossa("1","B","5"),new Mossa("1","C","1"),new Mossa("1","D","4"),
@@ -455,6 +469,6 @@ caselle(){
 
 
 }
-
+*/
 
 }
